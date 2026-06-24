@@ -1,0 +1,10 @@
+.git
+.idea
+.env
+target
+logs
+*.log
+*.iml
+.DS_Store
+docker-compose.yml
+README.md
