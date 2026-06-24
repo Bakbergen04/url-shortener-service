@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>kg.bakbergen</groupId>
+    <groupId>kg.jumabaev</groupId>
     <artifactId>url-shortener-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>URL Shortener Service</name>

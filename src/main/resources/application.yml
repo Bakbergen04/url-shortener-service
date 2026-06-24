@@ -45,7 +45,7 @@ spring:
 
 logging:
   level:
-    kg.bakbergen.shortener: DEBUG
+    kg.jumabaev.shortener: DEBUG
 
 ---
 spring:
@@ -58,4 +58,4 @@ spring:
 logging:
   level:
     root: INFO
-    kg.bakbergen.shortener: INFO
+    kg.jumabaev.shortener: INFO
