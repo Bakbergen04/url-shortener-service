@@ -11,6 +11,9 @@ spring:
     redis:
       host: ${SPRING_DATA_REDIS_HOST:localhost}
       port: ${SPRING_DATA_REDIS_PORT:6379}
+    web:
+      pageable:
+        max-page-size: 100
   jpa:
     open-in-view: false
     hibernate:

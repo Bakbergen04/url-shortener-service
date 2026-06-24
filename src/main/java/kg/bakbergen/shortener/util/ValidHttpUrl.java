@@ -17,6 +17,8 @@ public @interface ValidHttpUrl {
 
     String message() default "must be a valid HTTP or HTTPS URL with a maximum length of 2048 characters";
 
+    boolean allowNull() default false;
+
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};

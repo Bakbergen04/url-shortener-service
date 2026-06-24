@@ -12,9 +12,19 @@ public class HttpUrlValidator implements ConstraintValidator<ValidHttpUrl, Strin
     private static final int MAX_URL_LENGTH = 2048;
     private static final Set<String> ALLOWED_SCHEMES = Set.of("http", "https");
 
+    private boolean allowNull;
+
+    @Override
+    public void initialize(ValidHttpUrl constraintAnnotation) {
+        allowNull = constraintAnnotation.allowNull();
+    }
+
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        if (value == null || value.isBlank() || value.length() > MAX_URL_LENGTH) {
+        if (value == null) {
+            return allowNull;
+        }
+        if (value.isBlank() || value.length() > MAX_URL_LENGTH) {
             return false;
         }
 
