@@ -1,0 +1,20 @@
+target/
+.idea/
+*.iml
+.env
+logs/
+*.log
+.DS_Store
+
+# Maven Wrapper binary is downloaded on demand
+.mvn/wrapper/maven-wrapper.jar
+
+# IDEs and editors
+.classpath
+.factorypath
+.project
+.settings/
+.vscode/
+
+# OS-generated files
+Thumbs.db
