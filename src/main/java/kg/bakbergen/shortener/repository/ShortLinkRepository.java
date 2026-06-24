@@ -13,6 +13,9 @@ public interface ShortLinkRepository extends JpaRepository<ShortLink, UUID> {
 
     Optional<ShortLink> findByShortCode(String shortCode);
 
+    @Query("SELECT shortLink.id FROM ShortLink shortLink WHERE shortLink.shortCode = :shortCode")
+    Optional<UUID> findIdByShortCode(@Param("shortCode") String shortCode);
+
     boolean existsByShortCode(String shortCode);
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
