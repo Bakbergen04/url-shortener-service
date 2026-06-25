@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create short URLs and inspect click statistics.">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+    <a class="brand" href="/" aria-label="URL Shortener home">
+        <span class="brand-mark" aria-hidden="true">↗</span>
+        <span>URL Shortener</span>
+    </a>
+    <a class="docs-link" href="/swagger-ui.html">API docs</a>
+</header>
+
+<main>
+    <section class="hero">
+        <p class="eyebrow">Spring Boot · PostgreSQL · Redis</p>
+        <h1>Short links.<br><span>Useful insights.</span></h1>
+        <p class="hero-copy">Create a memorable link in seconds and track every redirect without storing raw IP addresses.</p>
+    </section>
+
+    <div class="workspace">
+        <section class="panel" aria-labelledby="create-heading">
+            <div class="panel-heading">
+                <span class="step">01</span>
+                <div>
+                    <h2 id="create-heading">Create a short link</h2>
+                    <p>Only HTTP and HTTPS URLs are accepted.</p>
+                </div>
+            </div>
+
+            <form id="create-form" novalidate>
+                <label for="original-url">Long URL</label>
+                <input id="original-url" name="originalUrl" type="url" maxlength="2048"
+                       placeholder="https://example.com/a/very/long/path" required>
+
+                <div class="field-grid">
+                    <div>
+                        <label for="custom-alias">Custom alias <span>optional</span></label>
+                        <input id="custom-alias" name="customAlias" type="text" minlength="4" maxlength="32"
+                               pattern="[A-Za-z0-9_-]+" placeholder="release-notes">
+                    </div>
+                    <div>
+                        <label for="title">Title <span>optional</span></label>
+                        <input id="title" name="title" type="text" maxlength="255" placeholder="Release notes">
+                    </div>
+                </div>
+
+                <label for="expires-at">Expires at <span>optional</span></label>
+                <input id="expires-at" name="expiresAt" type="datetime-local">
+
+                <button class="primary-button" type="submit">
+                    <span>Create short link</span>
+                    <span aria-hidden="true">→</span>
+                </button>
+            </form>
+
+            <div id="create-message" class="message" role="status" aria-live="polite"></div>
+            <div id="link-result" class="result-card" hidden>
+                <p>Ready to share</p>
+                <div class="result-row">
+                    <a id="short-url" href="#" target="_blank" rel="noopener"></a>
+                    <button id="copy-button" class="copy-button" type="button">Copy</button>
+                </div>
+                <dl class="result-meta">
+                    <div><dt>Code</dt><dd id="result-code"></dd></div>
+                    <div><dt>Clicks</dt><dd id="result-clicks">0</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="panel panel-dark" aria-labelledby="stats-heading">
+            <div class="panel-heading">
+                <span class="step">02</span>
+                <div>
+                    <h2 id="stats-heading">View statistics</h2>
+                    <p>Look up a link by its short code.</p>
+                </div>
+            </div>
+
+            <form id="stats-form" class="inline-form" novalidate>
+                <label class="sr-only" for="stats-code">Short code</label>
+                <input id="stats-code" name="shortCode" type="text" maxlength="32" placeholder="abc1234" required>
+                <button type="submit">View</button>
+            </form>
+
+            <div id="stats-message" class="message" role="status" aria-live="polite"></div>
+            <div id="stats-result" class="stats-result" hidden>
+                <div class="metric">
+                    <span>Total clicks</span>
+                    <strong id="stats-clicks">0</strong>
+                </div>
+                <div class="stats-details">
+                    <p><span>Short code</span><strong id="stats-short-code"></strong></p>
+                    <p><span>Last accessed</span><strong id="stats-last-accessed">Never</strong></p>
+                </div>
+                <h3>Daily activity</h3>
+                <div id="daily-clicks" class="daily-clicks"></div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <span>Java 21 / Spring Boot 3</span>
+    <span>Portfolio backend project</span>
+</footer>
+
+<script src="/app.js" defer></script>
+</body>
+</html>
